@@ -7,6 +7,7 @@ import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 import lombok.extern.slf4j.Slf4j;
+
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
@@ -30,10 +31,10 @@ public class InMemoryUserStorage implements UserStorage {
             user.setId(++idCounter);
             users.put(user.getId(), user);
             log.debug("POST: Пользователь {} с электронной почтой {} зарегистрирован. ", user.getName(),
-                     user.getEmail());
+                    user.getEmail());
         } else {
             log.debug("POST: ValidationException пользователь {} с электронной почтой {} ранее зарегистрирован. ",
-                     user.getName(), user.getEmail());
+                    user.getName(), user.getEmail());
             throw new ValidationException("Пользователь " + user.getName() + " с электронной почтой " +
                     user.getEmail() + " уже зарегистрирован.");
         }
@@ -106,8 +107,8 @@ public class InMemoryUserStorage implements UserStorage {
 
 
         if (user.getBirthday().isAfter(LocalDate.now())) {
-            log.debug(request + ": Дата рождения пользователя с электронной почтой {} не может быть в будущем."
-                    , user.getEmail());
+            log.debug(request + ": Дата рождения пользователя с электронной почтой {} не может быть в будущем.",
+                    user.getEmail());
             throw new ValidationException("Дата рождения не может быть в будущем.");
         }
     }
