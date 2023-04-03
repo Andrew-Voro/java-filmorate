@@ -7,8 +7,6 @@ import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import lombok.extern.slf4j.Slf4j;
-
-
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
