@@ -13,10 +13,15 @@ import java.util.Set;
 @Data
 @Builder
 public class User {
-    @EqualsAndHashCode.Exclude Integer id;
+    @EqualsAndHashCode.Exclude
+    Integer id;
     @Email String email;
-    @EqualsAndHashCode.Exclude String login;
-    @EqualsAndHashCode.Exclude String name;
-    @EqualsAndHashCode.Exclude LocalDate birthday;
-    @EqualsAndHashCode.Exclude Set<Integer> friends;
+    @EqualsAndHashCode.Exclude
+    String login;
+    @EqualsAndHashCode.Exclude
+    String name;
+    @EqualsAndHashCode.Exclude
+    LocalDate birthday;
+    @EqualsAndHashCode.Exclude
+    Set<Integer> friends;
 }

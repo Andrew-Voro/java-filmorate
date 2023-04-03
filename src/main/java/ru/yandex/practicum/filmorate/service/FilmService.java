@@ -55,6 +55,7 @@ public class FilmService {
             return filmStorage.getFilms().get(id);
         }
     }
+
     public List<Film> getPopularFilms(Integer count) {
         return filmStorage.findPopular(count);
     }

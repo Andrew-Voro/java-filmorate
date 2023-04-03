@@ -12,12 +12,16 @@ import java.util.Set;
 @Builder
 public class Film {
 
-    @EqualsAndHashCode.Exclude Integer id;
+    @EqualsAndHashCode.Exclude
+    Integer id;
     String name;
-    @EqualsAndHashCode.Exclude String description;
+    @EqualsAndHashCode.Exclude
+    String description;
     LocalDate releaseDate;
-    @EqualsAndHashCode.Exclude int duration;
+    @EqualsAndHashCode.Exclude
+    int duration;
 
-    @EqualsAndHashCode.Exclude Set<Integer> likes ;
+    @EqualsAndHashCode.Exclude
+    Set<Integer> likes;
 
 }

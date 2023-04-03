@@ -7,10 +7,12 @@ import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 import lombok.extern.slf4j.Slf4j;
+
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 @Getter
 @Slf4j
 @Component
@@ -60,11 +62,11 @@ public class InMemoryUserStorage implements UserStorage {
     public Collection<User> findAll() {
         return users.values();
     }
+
     public void delete(Integer id) {
-        if(users.containsKey(id)){
+        if (users.containsKey(id)) {
             users.remove(id);
-        }
-        else {
+        } else {
             throw new ValidationException("Delete: ValidationException пользователь c  id = " + id +
                     " отсутствует в базе. ");
         }

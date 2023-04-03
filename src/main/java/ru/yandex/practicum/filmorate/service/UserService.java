@@ -82,8 +82,7 @@ public class UserService {
                 }
             }
             return friends;
-        } catch (Throwable e)
-        {
+        } catch (Throwable e) {
             return friends;
         }
 
