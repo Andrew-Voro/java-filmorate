@@ -29,11 +29,11 @@ public class InMemoryUserStorage implements UserStorage {
             }
             user.setId(++idCounter);
             users.put(user.getId(), user);
-            log.debug("POST: Пользователь {} с электронной почтой {} зарегистрирован. ", user.getName()
-                    , user.getEmail());
+            log.debug("POST: Пользователь {} с электронной почтой {} зарегистрирован. ", user.getName(),
+                     user.getEmail());
         } else {
-            log.debug("POST: ValidationException пользователь {} с электронной почтой {} ранее зарегистрирован. "
-                    , user.getName(), user.getEmail());
+            log.debug("POST: ValidationException пользователь {} с электронной почтой {} ранее зарегистрирован. ",
+                     user.getName(), user.getEmail());
             throw new ValidationException("Пользователь " + user.getName() + " с электронной почтой " +
                     user.getEmail() + " уже зарегистрирован.");
         }
@@ -50,8 +50,8 @@ public class InMemoryUserStorage implements UserStorage {
                     " отсутствует в базе. ");
         } else {
             users.put(user.getId(), user);
-            log.debug("PUT: Данные пользователя  с id = {}  обновлены."
-                    , user.getId());
+            log.debug("PUT: Данные пользователя  с id = {}  обновлены.",
+                    user.getId());
         }
 
         return user;

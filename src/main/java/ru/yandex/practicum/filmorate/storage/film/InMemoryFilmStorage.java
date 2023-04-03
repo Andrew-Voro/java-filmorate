@@ -7,6 +7,7 @@ import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import lombok.extern.slf4j.Slf4j;
+
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -90,13 +91,13 @@ public class InMemoryFilmStorage implements FilmStorage {
             throw new ValidationException("Название фильма не может быть пустым.");
         }
         if (film.getDescription().length() > 200) {
-            log.debug(request + ": ValidationException, максимальная длина описания фильма {} — 200 символов."
-                    , film.getName());
+            log.debug(request + ": ValidationException, максимальная длина описания фильма {} — 200 символов.",
+                    film.getName());
             throw new ValidationException("Максимальная длина описания фильма — 200 символов.");
         }
         if (film.getReleaseDate().isBefore(LocalDate.of(1895, 12, 28))) {
-            log.debug(request + ": ValidationException, дата релиза фильмы {} — не раньше 28 декабря 1895 года."
-                    , film.getName());
+            log.debug(request + ": ValidationException, дата релиза фильмы {} — не раньше 28 декабря 1895 года.",
+                    film.getName());
             throw new ValidationException("Дата релиза — не раньше 28 декабря 1895 года.");
         }
         if (film.getDuration() < 0) {
