@@ -6,12 +6,11 @@ import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.UserService;
 import ru.yandex.practicum.filmorate.storage.user.UserStorage;
-
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+
 
 
 @Slf4j

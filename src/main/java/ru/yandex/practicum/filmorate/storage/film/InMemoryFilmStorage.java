@@ -34,7 +34,6 @@ public class InMemoryFilmStorage implements FilmStorage {
         return film;
     }
 
-
     public Film put(Film film) {
         validation(film, "Put");
         if (film.getId() == null || !films.containsKey(film.getId())) {
@@ -55,7 +54,7 @@ public class InMemoryFilmStorage implements FilmStorage {
     }
 
     public List<Film> findPopular(Integer count) {
-        for (Film film:films.values()
+        for (Film film : films.values()
         ) {
             try {
                 film.getLikes().size();
@@ -64,7 +63,7 @@ public class InMemoryFilmStorage implements FilmStorage {
                 });
             }
         }
-        return films.values().stream().sorted((o1, o2)->o2.getLikes().size() - o1.getLikes().size()) //likes
+        return films.values().stream().sorted((o1, o2) -> o2.getLikes().size() - o1.getLikes().size()) //likes
                 .limit(count).collect(Collectors.toList());
     }
 
