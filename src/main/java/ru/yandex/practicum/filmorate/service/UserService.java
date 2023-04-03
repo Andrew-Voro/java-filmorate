@@ -95,7 +95,7 @@ public class UserService {
         }
         List<User> commonFriends = new ArrayList<>();
         try {
-            Set<Integer> friendsId = userStorage.getUsers().get(id).getFriends();
+            Set<Integer> friendsId = new HashSet<>(userStorage.getUsers().get(id).getFriends());
             Set<Integer> friendsOtherId = userStorage.getUsers().get(otherId).getFriends();
             friendsId.retainAll(friendsOtherId);
             if (friendsId.size() > 0) {

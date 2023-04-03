@@ -20,7 +20,6 @@ public class Film {
     LocalDate releaseDate;
     @EqualsAndHashCode.Exclude
     int duration;
-
     @EqualsAndHashCode.Exclude
     Set<Integer> likes;
 
