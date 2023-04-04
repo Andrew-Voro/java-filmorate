@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Data
 @Builder
-@FieldDefaults(level= AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Email String email;
     @EqualsAndHashCode.Exclude //доброго времени суток,Давид, я немного не понял, что конкретно нужно поправить, надеюсь сделал правльно.

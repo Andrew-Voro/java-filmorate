@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Data
 @Builder
-@FieldDefaults(level= AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Film {
     String name;
     LocalDate releaseDate;
