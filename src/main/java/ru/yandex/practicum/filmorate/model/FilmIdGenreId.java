@@ -9,6 +9,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FilmIdGenreId {
-    Integer Film_Id;
-    Integer Genre_Id;
+    Integer FilmId;
+    Integer GenreId;
 }
