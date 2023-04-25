@@ -145,20 +145,20 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
     @Override
     public Film put(Film film) {
         InMemoryFilmStorage.validation(film, "Put");
-        Integer f_id = film.getId();
-        findFilmById(f_id);
+        Integer fId = film.getId();
+        findFilmById(fId);
         String sqlQuery = "update FILMS set " +
                 "FILM_NAME = ?,   RELEASE_DATE = ?,DESCRIPTION = ? ,MPA =? ,RATE = ? ,DURATION = ? " +
                 "where FILM_ID = ?";
 
-        jdbcTemplate.update(sqlQuery
-                , film.getName()
-                , film.getReleaseDate()
-                , film.getDescription()
-                , film.getMpa().getId()
-                , film.getRate()
-                , film.getDuration()
-                , film.getId());
+        jdbcTemplate.update(sqlQuery,
+                film.getName(),
+                film.getReleaseDate(),
+                film.getDescription(),
+                film.getMpa().getId(),
+                film.getRate(),
+                film.getDuration(),
+                film.getId());
         TreeSet<Genre> genreTree = new TreeSet<>(new Comparator<Genre>() {
             @Override
             public int compare(Genre s1, Genre s2) {
@@ -170,7 +170,7 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
         try {
             genreTree.addAll(film.getGenres());
             genresList.addAll(genreTree);
-            if (findAllFilmIdGenreIdIdFilm(f_id).size() > 0) {
+            if (findAllFilmIdGenreIdIdFilm(fId).size() > 0) {
                 if (film.getGenres().size() == 0) {
                     String sQuery = "delete from FILM_GENRE where  FILM_ID = ?";
                     jdbcTemplate.update(sQuery, film.getId());
@@ -198,8 +198,7 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
     }
 
     private int[] batch(final List<Genre> genres, int film_id, String requestDb) {
-        return this.jdbcTemplate.batchUpdate(requestDb
-                ,
+        return this.jdbcTemplate.batchUpdate(requestDb,
                 new BatchPreparedStatementSetter() {
                     public void setValues(PreparedStatement ps, int i) throws SQLException {
                         Genre genre = genres.get(i);
