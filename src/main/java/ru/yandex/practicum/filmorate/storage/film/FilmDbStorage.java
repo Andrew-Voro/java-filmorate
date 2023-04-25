@@ -105,8 +105,8 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
 
     private FilmIdGenreId mapRowToFilmIdGenreId(ResultSet resultSet, int rowNum) throws SQLException {
         FilmIdGenreId filmIdGenreId = FilmIdGenreId.builder()
-                .FilmId(resultSet.getInt("film_id"))
-                .GenreId(resultSet.getInt("genre_id"))
+                .filmId(resultSet.getInt("film_id"))
+                .genreId(resultSet.getInt("genre_id"))
                 .build();
         return filmIdGenreId;
     }

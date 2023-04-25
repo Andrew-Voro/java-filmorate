@@ -56,9 +56,9 @@ public class FilmServiceDb implements FilmService {
         film.setGenres(new ArrayList<>());
         for (FilmIdGenreId fIdgId : filmIdGenreIds) {
 
-            if (film.getId().equals(fIdgId.getFilm_Id())) {
+            if (film.getId().equals(fIdgId.getFilmId())) {
 
-                film.getGenres().add(genres.get(fIdgId.getGenre_Id()));
+                film.getGenres().add(genres.get(fIdgId.getGenreId()));
             }
         }
 
