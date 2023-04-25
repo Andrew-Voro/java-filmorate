@@ -37,8 +37,8 @@ class FilmControllerTest {
                         controller.create(film);
                     }
                 });
-        assertEquals("Тело запроса не может быть пустым."
-                , exception.getMessage());
+        assertEquals("Тело запроса не может быть пустым.",
+                 exception.getMessage());
 
     }
 
@@ -83,7 +83,7 @@ class FilmControllerTest {
     }
 
     @Test
-    public void FilmsReleaseDateTooEarly() {
+    public void filmsReleaseDateTooEarly() {
         Film film = Film.builder().description("Comedy").duration(2).id(0).name("Charly")
                 .releaseDate(LocalDate.of(1817, 12, 12)).build();
         final ValidationException exception = assertThrows(
