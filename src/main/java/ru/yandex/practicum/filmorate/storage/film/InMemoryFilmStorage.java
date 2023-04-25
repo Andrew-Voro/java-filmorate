@@ -7,6 +7,8 @@ import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import lombok.extern.slf4j.Slf4j;
+import ru.yandex.practicum.filmorate.model.FilmIdGenreId;
+import ru.yandex.practicum.filmorate.model.Genre;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -15,8 +17,8 @@ import java.util.stream.Collectors;
 @Getter
 @Slf4j
 @Component
-
 public class InMemoryFilmStorage implements FilmStorage {
+
     private static int idCounter;
     private final Map<Integer, Film> films = new HashMap<>();
 
@@ -33,6 +35,11 @@ public class InMemoryFilmStorage implements FilmStorage {
         return film;
     }
 
+    @Override
+    public Film findFilmById(Integer id) {
+        return films.get(id);
+    }
+
     public Film put(Film film) {
         validation(film, "Put");
         if (film.getId() == null || !films.containsKey(film.getId())) {
@@ -43,7 +50,6 @@ public class InMemoryFilmStorage implements FilmStorage {
             films.put(film.getId(), film);
             log.debug("PUT: Фильм  c id = {} ", film.getId());
         }
-
         return film;
     }
 
@@ -76,7 +82,7 @@ public class InMemoryFilmStorage implements FilmStorage {
 
     }
 
-    private void validation(Film film, String request) {
+    static void validation(Film film, String request) {
         if (film == null) {
             log.debug(request + ": ValidationException, тело запроса не может быть пустым.");
             throw new ValidationException("Тело запроса не может быть пустым.");
@@ -106,5 +112,41 @@ public class InMemoryFilmStorage implements FilmStorage {
             throw new ValidationException("Продолжительность фильма должна быть положительной.");
         }
 
+    }
+
+    public Collection<FilmIdGenreId> findAllFilmIdGenreId() {
+        List<FilmIdGenreId> list = new ArrayList();
+        FilmIdGenreId filmIdGenreId = FilmIdGenreId.builder().build();
+        list.add(filmIdGenreId);
+        return list;
+
+    }
+
+    public Collection<Genre> findAllGenre() {
+        List<Genre> list = new ArrayList();
+        Genre genre = Genre.builder().build();
+        list.add(genre);
+        return list;
+    }
+
+    public Map<Integer, Genre> getGenres() {
+        Map<Integer, Genre> map = new HashMap<>();
+        Genre genre = Genre.builder().build();
+        map.put(1, genre);
+        return map;
+    }
+
+    @Override
+    public void addLike(Integer id, Integer userId) {
+
+    }
+
+    @Override
+    public void deleteLike(Integer id, Integer userId) {
+
+    }
+
+    public Collection<Film> findAllPopular() {
+        return new ArrayList<>();
     }
 }

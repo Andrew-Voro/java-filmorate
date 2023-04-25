@@ -1,14 +1,14 @@
 package ru.yandex.practicum.filmorate.controller;
 
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.exception.ObjectNotFoundException;
+import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.UserService;
 import ru.yandex.practicum.filmorate.storage.user.UserStorage;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,10 +46,7 @@ public class UserController {
         if (id < 0) {
             throw new ValidationException("getUser: Введите положительный id.");
         }
-        if (!userStorage.getUsers().containsKey(id)) {
-            throw new ObjectNotFoundException("getUser: Юзера c id = " + id + " нет.");
-        }
-        return userStorage.getUsers().get(id);
+        return userService.findUserById(id);
     }
 
     @DeleteMapping("/{id}")
@@ -62,23 +59,11 @@ public class UserController {
 
     @PutMapping("/{id}/friends/{friendId}")
     public User addFriend(@PathVariable("id") Integer id, @PathVariable("friendId") Integer friendId) {
-        if (id < 0) {
-            throw new ValidationException("addFriend: Введите положительный id.");
-        }
-        if (id < 0) {
-            throw new ValidationException("addFriend: Введите положительный friendId.");
-        }
         return userService.addFriend(id, friendId);
     }
 
     @DeleteMapping("{id}/friends/{friendId}")
     public User deleteFriend(@PathVariable("id") Integer id, @PathVariable("friendId") Integer friendId) {
-        if (id < 0) {
-            throw new ValidationException("deleteFriend: Введите положительный id.");
-        }
-        if (id < 0) {
-            throw new ValidationException("deleteFriend: Введите положительный friendId.");
-        }
         return userService.deleteFriend(id, friendId);
     }
 

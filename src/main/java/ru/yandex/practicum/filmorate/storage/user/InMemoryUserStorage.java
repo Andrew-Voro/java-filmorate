@@ -15,11 +15,19 @@ import java.util.Map;
 
 @Getter
 @Slf4j
-@Component
+@Component("InMemoryUserStorage")
+
 public class InMemoryUserStorage implements UserStorage {
+
     private static int idCounter;
     private final Map<Integer, User> users = new HashMap<>();
 
+    public User findUserById(Integer id) {
+        if (!users.containsKey(id)) {
+            throw new ObjectNotFoundException("getUser: Юзера c id = " + id + " нет.");
+        }
+        return users.get(id);
+    }
 
     public User create(User user) {
         validation(user, "POST");
@@ -70,10 +78,9 @@ public class InMemoryUserStorage implements UserStorage {
             throw new ValidationException("Delete: ValidationException пользователь c  id = " + id +
                     " отсутствует в базе. ");
         }
-
     }
 
-    private void validation(User user, String request) {
+    static void validation(User user, String request) {
 
         if (user == null) {
             log.debug(request + ": ValidationException, тело запроса не может быть пустым.");

@@ -29,11 +29,11 @@ class UserControllerTest {
 
     @Test
     public void nullOrIncorrectMail() {
-        User user = User.builder().birthday(LocalDate.of(1907,12,12)).email(null)
+        User user = User.builder().birthday(LocalDate.of(1907, 12, 12)).email(null)
                 .id(0).login("Mat").name("Mattue").build();
         final ValidationException exception = assertThrows(
-              ValidationException.class,
-          new Executable() {
+                ValidationException.class,
+                new Executable() {
                     @Override
                     public void execute() {
                         // здесь блок кода, который хотим проверить
@@ -41,9 +41,10 @@ class UserControllerTest {
                     }
                 });
         assertEquals("Электронная почта не может быть пустой и должна содержать символ @."
-                ,exception.getMessage());
+                , exception.getMessage());
 
     }
+
     @Test
     public void nullUser() {
         User user = null;
@@ -57,13 +58,13 @@ class UserControllerTest {
                     }
                 });
         assertEquals("Тело запроса не может быть пустым."
-                ,exception.getMessage());
+                , exception.getMessage());
 
     }
 
     @Test
     public void nullLogin() {
-        User user = User.builder().birthday(LocalDate.of(1907,12,12)).email("udo@mail.ru")
+        User user = User.builder().birthday(LocalDate.of(1907, 12, 12)).email("udo@mail.ru")
                 .id(0).login(null).name("Mattue").build();
         final ValidationException exception = assertThrows(
                 ValidationException.class,
@@ -75,13 +76,13 @@ class UserControllerTest {
                     }
                 });
         assertEquals("Логин не может быть пустым и содержать пробелы."
-                ,exception.getMessage());
+                , exception.getMessage());
 
     }
 
     @Test
     public void blankOrWithSpaceLogin() {
-        User user = User.builder().birthday(LocalDate.of(1907,12,12)).email("udo@mail.ru")
+        User user = User.builder().birthday(LocalDate.of(1907, 12, 12)).email("udo@mail.ru")
                 .id(0).login(" ").name("Mattue").build();
         final ValidationException exception = assertThrows(
                 ValidationException.class,
@@ -93,15 +94,14 @@ class UserControllerTest {
                     }
                 });
         assertEquals("Логин не может быть пустым и содержать пробелы."
-                ,exception.getMessage());
+                , exception.getMessage());
 
     }
 
 
-
     @Test
     public void futureDateOfBirthday() {
-        User user = User.builder().birthday(LocalDate.of(2107,12,12)).email("udo@mail.ru")
+        User user = User.builder().birthday(LocalDate.of(2107, 12, 12)).email("udo@mail.ru")
                 .id(0).login("Matt").name("Mattue").build();
         final ValidationException exception = assertThrows(
                 ValidationException.class,
@@ -113,7 +113,7 @@ class UserControllerTest {
                     }
                 });
         assertEquals("Дата рождения не может быть в будущем."
-                ,exception.getMessage());
+                , exception.getMessage());
 
     }
 

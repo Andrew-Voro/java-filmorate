@@ -8,8 +8,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Genre {
-    int id;
-    String name;
-
+public class Friend {
+    Integer id;
+    Integer friend_id;
 }
