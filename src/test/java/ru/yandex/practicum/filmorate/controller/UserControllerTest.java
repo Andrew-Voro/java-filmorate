@@ -40,8 +40,8 @@ class UserControllerTest {
                         controller.create(user);
                     }
                 });
-        assertEquals("Электронная почта не может быть пустой и должна содержать символ @."
-                , exception.getMessage());
+        assertEquals("Электронная почта не может быть пустой и должна содержать символ @.",
+                 exception.getMessage());
 
     }
 
@@ -57,8 +57,8 @@ class UserControllerTest {
                         controller.create(user);
                     }
                 });
-        assertEquals("Тело запроса не может быть пустым."
-                , exception.getMessage());
+        assertEquals("Тело запроса не может быть пустым.",
+                 exception.getMessage());
 
     }
 
@@ -75,8 +75,8 @@ class UserControllerTest {
                         controller.create(user);
                     }
                 });
-        assertEquals("Логин не может быть пустым и содержать пробелы."
-                , exception.getMessage());
+        assertEquals("Логин не может быть пустым и содержать пробелы.",
+                 exception.getMessage());
 
     }
 
@@ -93,8 +93,8 @@ class UserControllerTest {
                         controller.create(user);
                     }
                 });
-        assertEquals("Логин не может быть пустым и содержать пробелы."
-                , exception.getMessage());
+        assertEquals("Логин не может быть пустым и содержать пробелы.",
+                 exception.getMessage());
 
     }
 
@@ -112,8 +112,8 @@ class UserControllerTest {
                         controller.create(user);
                     }
                 });
-        assertEquals("Дата рождения не может быть в будущем."
-                , exception.getMessage());
+        assertEquals("Дата рождения не может быть в будущем.",
+                 exception.getMessage());
 
     }
 
