@@ -288,8 +288,8 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
     }
 
     @Override
-    public Mpa findMpaById(Integer mpaID) {
-        SqlRowSet mpaRows = jdbcTemplate.queryForRowSet("select * from MPA WHERE MPA_ID = ?", mpaID);
+    public Mpa findMpaById(Integer mpaId) {
+        SqlRowSet mpaRows = jdbcTemplate.queryForRowSet("select * from MPA WHERE MPA_ID = ?", mpaId);
 
         if (mpaRows.next()) {
             Mpa mpa = Mpa.builder().id(mpaRows.getInt("MPA_ID"))
@@ -300,8 +300,8 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
 
             return mpa;
         } else {
-            log.info("Mpa с идентификатором {} не найден.", mpaID);
-            throw new ObjectNotFoundException("Mpa c id = " + mpaID + " не найден.");
+            log.info("Mpa с идентификатором {} не найден.", mpaId);
+            throw new ObjectNotFoundException("Mpa c id = " + mpaId + " не найден.");
 
         }
     }

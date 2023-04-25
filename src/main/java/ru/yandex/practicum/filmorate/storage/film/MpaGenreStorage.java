@@ -8,10 +8,10 @@ import java.util.Collection;
 public interface MpaGenreStorage {
     Collection<Genre> findAllGenre();
 
-    Genre findGenreById(Integer genreID);
+    Genre findGenreById(Integer genreId);
 
     Collection<Mpa> findAllMpa();
 
-    Mpa findMpaById(Integer MpaID);
+    Mpa findMpaById(Integer mpaId);
 
 }
