@@ -10,5 +10,5 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Friend {
     Integer id;
-    Integer friend_id;
+    Integer friendid;
 }

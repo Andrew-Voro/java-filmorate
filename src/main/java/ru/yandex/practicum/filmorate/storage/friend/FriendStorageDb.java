@@ -28,7 +28,7 @@ public class FriendStorageDb implements FriendStorage {
         List<Friend> friends = jdbcTemplate.query(sql, (rs, rowNum) -> makeFriend(rs), userId);
 
         Set<User> listFriends = friends.stream()
-                .map(Friend::getFriend_id)
+                .map(Friend::getFriendid)
                 .map(userDbStorage::findUserById)
                 .collect(Collectors.toSet());
 
@@ -40,17 +40,17 @@ public class FriendStorageDb implements FriendStorage {
 
     private Friend makeFriend(ResultSet rs) throws SQLException {
         return Friend.builder().id(rs.getInt("u_id"))
-                .friend_id(rs.getInt("friend_id")).build();
+                .friendid(rs.getInt("friend_id")).build();
     }
 
     @Override
     public User addFriend(Integer userId, Integer friendId) {
-        Friend friend = Friend.builder().id(userId).friend_id(friendId).build();
+        Friend friend = Friend.builder().id(userId).friendid(friendId).build();
         String sqlQuery = "insert into FRIENDS(U_ID, FRIEND_ID) " +
                 "values (?, ?)";
         jdbcTemplate.update(sqlQuery,
                 friend.getId(),//меняем местами ??
-                friend.getFriend_id());
+                friend.getFriendid());
 
         return userDbStorage.findUserById(friendId);
     }
