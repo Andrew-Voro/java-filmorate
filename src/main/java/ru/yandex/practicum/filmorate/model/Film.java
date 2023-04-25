@@ -1,22 +1,28 @@
 package ru.yandex.practicum.filmorate.model;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
-import java.time.Duration;
+
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.Set;
 
 @Data
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Film {
-
-    @EqualsAndHashCode.Exclude Integer id;
     String name;
-    @EqualsAndHashCode.Exclude String description;
     LocalDate releaseDate;
-    @EqualsAndHashCode.Exclude int duration;
+    @EqualsAndHashCode.Exclude
+    Integer id;
+    @EqualsAndHashCode.Exclude
+    String description;
+    @EqualsAndHashCode.Exclude
+    int duration;
+    @EqualsAndHashCode.Exclude
+    Set<Integer> likes;
 
 }
