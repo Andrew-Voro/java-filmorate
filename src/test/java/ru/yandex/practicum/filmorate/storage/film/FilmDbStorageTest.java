@@ -99,8 +99,8 @@ class FilmDbStorageTest {
 
     @Test
     void findAllMpa() {
-        Collection<Mpa> Mpas = filmStorage.findAllMpa();
-        assertThat(Mpas.size()).isEqualTo(5);
+        Collection<Mpa> mpaList = filmStorage.findAllMpa();
+        assertThat(mpaList.size()).isEqualTo(5);
     }
 
     @Test
