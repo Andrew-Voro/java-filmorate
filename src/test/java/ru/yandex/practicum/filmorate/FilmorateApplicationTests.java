@@ -23,13 +23,13 @@ class FilmorateApplicationTests {
 
     @Test
     void findUserById() {
-        User user = User.builder().id(1).email("mail@mail.ru").name("Lucy").login("Lucy")
+        User u = User.builder().id(1).email("mail@mail.ru").name("Lucy").login("Lucy")
                 .birthday(LocalDate.of(2020, 02, 03)).build();
-        userStorage.create(user);
+        userStorage.create(u);
         userStorage.findUserById(1);
-        assertThat(user).hasFieldOrPropertyWithValue("id", 1);
-        assertThat(user).hasFieldOrPropertyWithValue("name", "Lucy");
-        userStorage.delete(user.getId());
+        assertThat(u).hasFieldOrPropertyWithValue("id", 1);
+        assertThat(u).hasFieldOrPropertyWithValue("name", "Lucy");
+        userStorage.delete(u.getId());
     }
 
 }
