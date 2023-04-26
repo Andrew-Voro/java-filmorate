@@ -1,8 +1,7 @@
 package ru.yandex.practicum.filmorate.storage.film;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -25,7 +24,6 @@ import java.util.*;
 @RequiredArgsConstructor
 @Primary
 public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
-    private final Logger log = LoggerFactory.getLogger(FilmDbStorage.class);
     private final JdbcTemplate jdbcTemplate;
 
 
@@ -229,11 +227,8 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
                     .build();
             film.setMpa(Mpa.builder().id(filmRows.getInt("mpa")).name(filmRows.getString("mpa_name")).build());
 
-            log.info("Найден пользователь: {} {}", film.getId(), film.getName());
-
             return film;
         } else {
-            log.info("Фильм с идентификатором {} не найден.", id);
             throw new ObjectNotFoundException("Фильм c id = " + id + " не найден.");
         }
 
@@ -269,11 +264,8 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
                     .name(genreRows.getString("GENRE_NAME"))
                     .build();
 
-            log.info("Найден жанр: {} {}", genre.getId(), genre.getName());
-
             return genre;
         } else {
-            log.info("Жанр с идентификатором {} не найден.", genreId);
             throw new ObjectNotFoundException("Жанр c id = " + genreId + " не найден.");
 
         }
@@ -296,11 +288,8 @@ public class FilmDbStorage implements FilmStorage, MpaGenreStorage {
                     .name(mpaRows.getString("MPA_NAME"))
                     .build();
 
-            log.info("Найден mpa: {} {}", mpa.getId(), mpa.getName());
-
             return mpa;
         } else {
-            log.info("Mpa с идентификатором {} не найден.", mpaId);
             throw new ObjectNotFoundException("Mpa c id = " + mpaId + " не найден.");
 
         }

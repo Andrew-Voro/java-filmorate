@@ -1,8 +1,6 @@
 package ru.yandex.practicum.filmorate.storage.user;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -21,7 +19,6 @@ import java.util.*;
 @RequiredArgsConstructor
 @Primary
 public class UserDbStorage implements UserStorage {
-    private final Logger log = LoggerFactory.getLogger(UserDbStorage.class);
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -40,11 +37,8 @@ public class UserDbStorage implements UserStorage {
                     .birthday(userRows.getDate("birthday").toLocalDate())
                     .build();
 
-            log.info("Найден пользователь: {} {}", user.getId(), user.getName());
-
             return user;
         } else {
-            log.info("Пользователь с идентификатором {} не найден.", id);
             throw new ObjectNotFoundException("Пользователь  c id = " + id + " не найден.");
 
         }
