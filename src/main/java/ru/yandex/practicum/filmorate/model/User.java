@@ -8,14 +8,17 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.Email;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+
 
 @Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Email String email;
-    @EqualsAndHashCode.Exclude //доброго времени суток,Давид, я немного не понял, что конкретно нужно поправить, надеюсь сделал правльно.
+    @EqualsAndHashCode.Exclude
     Integer id;
     @EqualsAndHashCode.Exclude
     String login;
@@ -25,4 +28,16 @@ public class User {
     LocalDate birthday;
     @EqualsAndHashCode.Exclude
     Set<Integer> friends;
+
+
+    public Map<String, Object> toMap() { //new
+        Map<String, Object> values = new HashMap<>();
+        values.put("EMAIL", email);
+        values.put("USER_ID", id);
+        values.put("USER_NAME", name);
+        values.put("LOGIN", login);
+        values.put("BIRTHDAY", birthday);
+        return values;
+    }
+
 }
